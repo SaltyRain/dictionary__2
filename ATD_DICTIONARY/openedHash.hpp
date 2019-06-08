@@ -51,8 +51,11 @@ namespace openedHash {
         bool existArrName(int hs) const; //проверяем, есть ли такое имя в массива
         bool existListName(int hs, const char *name) const; //проверяем, есть ли такое имя в списке (классе)
         
+        elem* searchPrevFromSecond(int hs, const char *name) const;
         
-        
+        void delHead(int hs); //удаление головы списка
+        void delArr(); //очистить весь массив
+        void delList(int i); //удалить список
     };
 }
 #endif /* openedHash_hpp */

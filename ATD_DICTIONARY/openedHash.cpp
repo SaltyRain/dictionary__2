@@ -74,6 +74,79 @@ void openedHash:: dictionary:: insert(const char *name)
     strcpy(arr[hash].name, name);
 }
 
+
+openedHash:: elem* openedHash:: dictionary:: searchPrevFromSecond(int hs, const char *name) const
+{
+    elem *prev = arr[hs].next;
+    elem *temp = arr[hs].next->next; //второй элемент списка
+    while (temp != nullptr)
+    {
+        if (strcmp(temp->name, name) == 0) //проверка на совпадение
+            return prev;
+        temp = temp->next;
+        prev = prev->next;
+    }
+    return nullptr;
+}
+
+void openedHash:: dictionary:: delHead(int hs) //удаление головы списка
+{
+    elem *delEl = arr[hs].next;
+    arr[hs].next = arr[hs].next->next;
+    delete delEl;
+}
+
+ void openedHash:: dictionary:: del(const char *name)
+{
+    int key = countKey(name);
+    int hash = countHash(key, B);
+    if (existArrName(hash) == false) // Если элемент с таким хэшем не существует
+        return; //удалять нечего -> выходим из функции
+    
+    if (strcmp(arr[hash].name, name) == 0) //если искомый элемент находится в массиве
+    {
+        if (arr[hash].next != nullptr) //если имеются элементы списка
+        {
+            //необходимо перенести данные из головы списка в массив, а головной элемент удалить
+            arr[hash].name = arr[hash].next->name; // перенесли имя в массив
+            elem* delEl = arr[hash].next;
+            arr[hash].next = arr[hash].next->next; // соеденили указатель из массива со следующим от головы списка
+            delete delEl; //удаляем голову
+        }
+        else //списка нет -> просто удаляем элемент массива
+        {
+            delete arr[hash].name;
+            arr[hash].name = nullptr;
+        }
+    }
+    else //не нашли элемент в массиве, ищем в списках
+    {
+        cout << "ищем элемент в списках" << endl;
+        if (arr[hash].next == nullptr) //если список пуст
+        {
+            cout << "если список пуст" << endl;
+            return; //выходим из функции, удалять нечего
+        }
+        
+        
+        if (strcmp(arr[hash].next->name, name) == 0) //если элемент - это голова списка
+        {
+            delHead(hash); // удаляем голову
+        }
+        else
+        {
+            elem *prevEl = searchPrevFromSecond(hash, name);
+            if (prevEl->next == nullptr) //если следующий элемент не совпадает
+                return; //ничего не нашли
+            elem *el = prevEl->next;
+            prevEl->next = el->next; //связали предыдущий со следующим
+            delete el;
+        }
+
+    }
+}
+
+
 void openedHash:: dictionary:: print() const
 {
     elem *temp;
@@ -86,14 +159,52 @@ void openedHash:: dictionary:: print() const
             {
                 cout << " [";
                 temp = arr[i].next;
+
                 while (temp != nullptr)
                 {
-                    cout << temp->name << ", ";
+                    cout << " " << temp->name;
                     temp = temp->next;
                 }
-                cout << "]";
+
+                 cout << " ]";
             }
             cout << endl;
         }
     }
+    cout << endl;
+}
+
+void openedHash:: dictionary:: delList(int i)
+{
+    elem *temp1, *temp2 = arr[i].next;
+    while (temp2 != nullptr)
+    {
+        temp1 = temp2;
+        temp2 = temp2->next;
+        delete[] temp1->name;
+        delete temp1;
+    }
+    arr[i].next = nullptr;
+}
+
+void openedHash:: dictionary:: delArr()
+{
+    for (int i=0; i < SIZE; i++)
+    {
+        if (arr[i].name != nullptr) //если класс не пустой
+        {
+            if (arr[i].next != nullptr) //если список не пустой
+            {
+                delList(i); //удаляем список i элемента массива
+            }
+            delete[] arr[i].name;
+            arr[i].name = nullptr;
+        }
+    }
+}
+
+void openedHash:: dictionary:: makenull()
+{
+    delArr();
+    cout << "Список очищен" << endl;
 }

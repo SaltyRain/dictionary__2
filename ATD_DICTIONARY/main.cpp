@@ -45,6 +45,13 @@ int main(int argc, const char * argv[]) {
     
     readNamesFromFile(GOODGUYS, goodguys);
     goodguys.print();
+    goodguys.del("Selina");
+    goodguys.print();
+    goodguys.del("Joker");
+    goodguys.print();
+    goodguys.del("Harvy");
+    goodguys.print();
     
-    
+    goodguys.makenull();
+    goodguys.print();
 }

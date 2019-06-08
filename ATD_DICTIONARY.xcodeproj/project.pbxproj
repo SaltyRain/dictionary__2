@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E6CC7B2A224BD6C20098150D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6CC7B29224BD6C20098150D /* main.cpp */; };
+		E6CC7B32224BF9300098150D /* openedHash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6CC7B30224BF9300098150D /* openedHash.cpp */; };
+		E6CC7B36224BFAAA0098150D /* closedHash.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E6CC7B34224BFAAA0098150D /* closedHash.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,11 @@
 /* Begin PBXFileReference section */
 		E6CC7B26224BD6C20098150D /* ATD_DICTIONARY */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ATD_DICTIONARY; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6CC7B29224BD6C20098150D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		E6CC7B30224BF9300098150D /* openedHash.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = openedHash.cpp; sourceTree = "<group>"; };
+		E6CC7B31224BF9300098150D /* openedHash.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = openedHash.hpp; sourceTree = "<group>"; };
+		E6CC7B33224BF9E40098150D /* constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
+		E6CC7B34224BFAAA0098150D /* closedHash.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = closedHash.cpp; sourceTree = "<group>"; };
+		E6CC7B35224BFAAA0098150D /* closedHash.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = closedHash.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +65,11 @@
 			isa = PBXGroup;
 			children = (
 				E6CC7B29224BD6C20098150D /* main.cpp */,
+				E6CC7B34224BFAAA0098150D /* closedHash.cpp */,
+				E6CC7B35224BFAAA0098150D /* closedHash.hpp */,
+				E6CC7B30224BF9300098150D /* openedHash.cpp */,
+				E6CC7B31224BF9300098150D /* openedHash.hpp */,
+				E6CC7B33224BF9E40098150D /* constants.h */,
 			);
 			path = ATD_DICTIONARY;
 			sourceTree = "<group>";
@@ -118,6 +130,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6CC7B36224BFAAA0098150D /* closedHash.cpp in Sources */,
+				E6CC7B32224BF9300098150D /* openedHash.cpp in Sources */,
 				E6CC7B2A224BD6C20098150D /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

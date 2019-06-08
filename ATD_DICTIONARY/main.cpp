@@ -52,6 +52,10 @@ int main(int argc, const char * argv[]) {
     goodguys.del("Harvy");
     goodguys.print();
     
+    goodguys.member("Batman") ? (cout << "Бэтмэн жив"<<endl) : (cout << "Бэтмэн умер"<<endl);
+    goodguys.member("Harvy") ? (cout << "Харви жив"<<endl) : (cout << "Харви умер"<<endl);
+    
+    
     goodguys.makenull();
     goodguys.print();
 }

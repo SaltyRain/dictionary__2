@@ -147,6 +147,22 @@ void openedHash:: dictionary:: delHead(int hs) //удаление головы �
 }
 
 
+bool openedHash:: dictionary:: member(const char *name) const
+{
+    int key = countKey(name);
+    int hash = countHash(key, B);
+    if (existArrName(hash)) //проверяет, есть ли такой хэш в массиве
+    {
+        if (strcmp(arr[hash].name, name) == 0) //если элемент массива - искомый
+            return true;
+        if (arr[hash].next != nullptr) //если имеются члены списка
+            return existListName(hash, name); //ищем этот элемент в
+        
+    }
+    return false;
+}
+
+
 void openedHash:: dictionary:: print() const
 {
     elem *temp;
@@ -208,3 +224,5 @@ void openedHash:: dictionary:: makenull()
     delArr();
     cout << "Список очищен" << endl;
 }
+
+

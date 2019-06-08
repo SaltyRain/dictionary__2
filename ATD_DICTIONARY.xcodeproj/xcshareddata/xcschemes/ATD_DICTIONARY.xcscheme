@@ -47,7 +47,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "YES"
-      customWorkingDirectory = "/Users/TimurGaripov/Desktop/&#x423;&#x447;&#x435;&#x431;&#x430;/&#x418;&#x422;&#x41c;&#x41e;/3 &#x43a;&#x443;&#x440;&#x441;/2 &#x441;&#x435;&#x43c;&#x435;&#x441;&#x442;&#x440;/&#x41f;&#x440;&#x438;&#x43a;&#x43b;&#x430;&#x434;&#x43d;&#x430;&#x44f; &#x43c;&#x430;&#x442;&#x435;&#x43c;&#x430;&#x442;&#x438;&#x43a;&#x430;/ATD_DICTIONARY/ATD_DICTIONARY"
+      customWorkingDirectory = "/Users/TimurGaripov/Desktop/&#x423;&#x447;&#x435;&#x431;&#x430;/&#x418;&#x422;&#x41c;&#x41e;/3 &#x43a;&#x443;&#x440;&#x441;/2 &#x441;&#x435;&#x43c;&#x435;&#x441;&#x442;&#x440;/&#x41f;&#x440;&#x438;&#x43a;&#x43b;&#x430;&#x434;&#x43d;&#x430;&#x44f; &#x43c;&#x430;&#x442;&#x435;&#x43c;&#x430;&#x442;&#x438;&#x43a;&#x430;/dictionary__2/ATD_DICTIONARY"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"

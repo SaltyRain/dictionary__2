@@ -20,10 +20,31 @@
 using namespace std;
 using namespace openedHash;
 
-
+void readNamesFromFile(const char *filename, dictionary &dName)
+{
+    ifstream f;
+    f.open(filename); //открываем файл
+    if (!f.is_open()) //если не получилось открыть файл
+    {
+        cout << "Файл не открыт" << endl;
+        f.close();
+        return;
+    }
+    char nm[20];
+    while (!f.eof())
+    {
+        f >> nm;
+        dName.insert(nm);
+    }
+    f.close();
+}
 
 
 int main(int argc, const char * argv[]) {
     dictionary goodguys, badguys;
+    
+    readNamesFromFile(GOODGUYS, goodguys);
+    goodguys.print();
+    
     
 }

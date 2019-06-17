@@ -6,11 +6,11 @@
 //  Copyright © 2019 Timur. All rights reserved.
 //
 
-#include <iostream>
-#include <cstring>
 
 #include "openedHash.hpp"
 
+#include <iostream>
+#include <cstring>
 
 using namespace std;
 
@@ -108,6 +108,13 @@ void openedHash:: dictionary:: delHead(int hs) //удаление головы �
         if (arr[hash].next != nullptr) //если имеются элементы списка
         {
             //необходимо перенести данные из головы списка в массив, а головной элемент удалить
+            
+            elem *temp = arr[hash].next;
+            
+            delete arr[hash].name;
+//            arr[hash] = arr[hash].next;
+//            arr[hash] = arr[hash].next;
+            delete temp;
             arr[hash].name = arr[hash].next->name; // перенесли имя в массив
             elem* delEl = arr[hash].next;
             arr[hash].next = arr[hash].next->next; // соеденили указатель из массива со следующим от головы списка

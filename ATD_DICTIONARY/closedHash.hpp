@@ -11,8 +11,33 @@
 
 #include <stdio.h>
 
+#define BUSY -1
 namespace closedHash {
+
+    struct elem
+    {
+        const char *name;
+        elem() { name = nullptr; }
+    };
     
+    class dictionary
+    {
+    public:
+        void insert(const char *name); //вставка значения в список
+        void del(const char *name); //удаление значения из списка
+        bool member(const char *name) const; //проверка, есть ли value во множестве
+        void makenull(); //очистка списка
+        void print() const; //вывод списка
+        
+    private:
+        static const int SIZE = 20;
+        static elem arr[SIZE];
+        
+        int countKey(const char *name) const;
+        int countHash(int key, int iter) const;
+        
+        int searchFreePos(int hs, int key, const char *nm); // поиск свободной позиции для вставки
+    };
 }
 
 #endif /* closedHash_hpp */

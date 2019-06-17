@@ -46,17 +46,17 @@ int main(int argc, const char * argv[]) {
     
     readNamesFromFile(GOODGUYS, goodguys);
     goodguys.print();
-//    goodguys.del("Selina");
-//    goodguys.print();
-//    goodguys.del("Joker");
-//    goodguys.print();
-//    goodguys.del("Harvy");
-//    goodguys.print();
-//    
-//    goodguys.member("Batman") ? (cout << "Бэтмэн жив"<<endl) : (cout << "Бэтмэн умер"<<endl);
-//    goodguys.member("Harvy") ? (cout << "Харви жив"<<endl) : (cout << "Харви умер"<<endl);
-//    
-//    
-//    goodguys.makenull();
-//    goodguys.print();
+    goodguys.del("Selina");
+    goodguys.print();
+    goodguys.del("Joker");
+    goodguys.print();
+    goodguys.del("Harvy");
+    goodguys.print();
+    
+    goodguys.member("Batman") ? (cout << "Бэтмэн есть в списке"<< endl) : (cout << "Бэтмэна нет в списке"<< endl);
+    goodguys.member("Harvy") ? (cout << "Харви есть в списке"<< endl) : (cout << "Харви нет в списке"<< endl);
+    
+    cout << "\nMakenull" << endl;
+    goodguys.makenull();
+    goodguys.print();
 }

@@ -36,7 +36,8 @@ int closedHash:: dictionary:: searchFreePos(int hs, int key, const char *nm)
     int pos = ER_POS;
     int iter = 0;
     int original_hash = hs;
-    for (int i=0; i < SIZE; i++)
+    
+    while (arr[hs].name != nullptr)
     {
         if (strcmp(arr[hs].name, nm) == 0) //строки совпали
             return ER_POS; //значит вставить не можем, позиция занята
@@ -44,20 +45,17 @@ int closedHash:: dictionary:: searchFreePos(int hs, int key, const char *nm)
         //выполняем повторное хеширование
         iter++;
         hs = countHash(key, iter); //считаем новый хэш
-        
-        if (arr[hs].name == nullptr) //прошлись по всему классу
-        {
-            if (pos != ER_POS) //если мы до этого не нашли удаленное место
-                pos = hs; //то вставку придется осуществить в пустое место
-            break;
-        }
-        
-        if (arr[hs].name[0] == '\0')
+
+        if (arr[hs].name != nullptr && arr[hs].name[0] == '\0')
             pos = hs; //запоминаем позицию для дальнейшей вставки
-        
+
         if (hs == original_hash)
             break;
     }
+    
+    if (pos == ER_POS) //если не нашли позицию удаленного элемента
+        pos = hs; //то возвращаем позицию элемента nullptr
+  
     return pos;
 }
 
@@ -77,22 +75,28 @@ void closedHash:: dictionary:: insert(const char *name)
     if (pos !=  ER_POS)
     {
         if (arr[pos].name == nullptr)
-            arr[hash].name = new char[20]; //не выделяем память для удаленной до этого строки
+            arr[pos].name = new char[20]; //не выделяем память для удаленной до этого строки
         
-        strcpy(arr[hash].name, name); //копируем строку в массив
+        strcpy(arr[pos].name, name); //копируем строку в массив
     }
 }
 
 int closedHash:: dictionary:: searchName(int hs, int key, const char *nm) const
 {
     int original_hash = hs;
+    int iter = 0;
     
-    if (strcmp(arr[hs].name, nm) == 0)
-        return hs;
-    
-    if (arr[hs].name == nullptr)
-        return ER_POS;
-    
+    while (arr[hs].name != nullptr) //пока не закончился класс
+    {
+        if (strcmp(arr[hs].name, nm) == 0)
+            return hs;
+        
+        //выполняем повторное хеширование
+        iter++;
+        hs = countHash(key, iter); //считаем новый хэш
+        if (hs == original_hash) //вернулись к исходному хэшу -> класс закончился
+            break;
+    }
     return ER_POS;
 }
 
@@ -127,6 +131,7 @@ void closedHash:: dictionary:: makenull()
     for(int i=0 ; i < SIZE; i++)
     {
         delete[] arr[i].name; // Удаляем данные из ячейки
+        arr[i].name = nullptr;
     }
 }
 
@@ -134,9 +139,8 @@ void closedHash:: dictionary:: print() const
 {
     for (int i=0; i < SIZE; i++)
     {
-        if (arr[i].name != nullptr)
-        {
+        if (arr[i].name != nullptr && arr[i].name[0] != '\0')
             cout << i << ")" << arr[i].name << endl;
-        }
     }
+    cout << endl;
 }

@@ -16,7 +16,7 @@ namespace closedHash {
 
     struct elem
     {
-        const char *name;
+        char *name;
         elem() { name = nullptr; }
     };
     

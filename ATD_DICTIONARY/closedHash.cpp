@@ -44,18 +44,19 @@ int closedHash:: dictionary:: searchFreePos(int hs, int key, const char *nm)
         //выполняем повторное хеширование
         iter++;
         hs = countHash(key, iter); //считаем новый хэш
+        
+        if (arr[hs].name == nullptr) //прошлись по всему классу
+        {
+            if (pos != BUSY) //если мы до этого не нашли удаленное место
+                pos = hs; //то вставку придется осуществить в пустое место
+            break;
+        }
+        
         if (arr[hs].name[0] == '\0')
             pos = hs; //запоминаем позицию для дальнейшей вставки
         
         if (hs == original_hash)
             break;
-        
-        if (arr[hs].name == nullptr) //прошлись по всему классу
-        {
-            if (arr[pos].name[0] != '\0') //если мы до этого не нашли удаленное место
-                pos = hs; //то вставку придется осуществить в пустое место
-            break;
-        }
     }
     return pos;
 }
@@ -67,13 +68,19 @@ void closedHash:: dictionary:: insert(const char *name)
     
     if (arr[hash].name == nullptr) //значение пустое
     {
-        arr[hash].name = name;
+        arr[hash].name = new char[20];
+        strcpy(arr[hash].name, name); //копируем строку в массив
         return;
     }
     
     int insert_pos = searchFreePos(hash, key, name); //Ищем позицию вставки
     if (insert_pos !=  BUSY)
-         arr[hash].name = name;
+    {
+        if (arr[insert_pos].name == nullptr)
+            arr[hash].name = new char[20]; //не выделяем память для удаленной до этого строки
+        
+        strcpy(arr[hash].name, name); //копируем строку в массив
+    }
 }
 
 void closedHash:: dictionary:: del(const char *name)
@@ -93,5 +100,11 @@ void closedHash:: dictionary:: makenull()
 
 void closedHash:: dictionary:: print() const
 {
-    
+    for (int i=0; i < SIZE; i++)
+    {
+        if (arr[i].name != nullptr)
+        {
+            cout << i << ")" << arr[i].name << endl;
+        }
+    }
 }

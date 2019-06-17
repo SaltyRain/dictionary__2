@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 
-#define BUSY -1
+#define ER_POS -1
 namespace closedHash {
 
     struct elem
@@ -37,6 +37,7 @@ namespace closedHash {
         int countHash(int key, int iter) const;
         
         int searchFreePos(int hs, int key, const char *nm); // поиск свободной позиции для вставки
+        int searchName(int hs, int key, int iter, const char *nm) const; //поиск элемента в массиве. Возврат позиции этого элемента
     };
 }
 

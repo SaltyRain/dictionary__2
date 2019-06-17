@@ -37,7 +37,7 @@ namespace closedHash {
         int countHash(int key, int iter) const;
         
         int searchFreePos(int hs, int key, const char *nm); // поиск свободной позиции для вставки
-        int searchName(int hs, int key, int iter, const char *nm) const; //поиск элемента в массиве. Возврат позиции этого элемента
+        int searchName(int hs, int key, const char *nm) const; //поиск элемента в массиве. Возврат позиции этого элемента
     };
 }
 

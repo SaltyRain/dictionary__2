@@ -83,15 +83,17 @@ void closedHash:: dictionary:: insert(const char *name)
     }
 }
 
-int closedHash:: dictionary:: searchName(int hs, int key, int iter, const char *nm) const
+int closedHash:: dictionary:: searchName(int hs, int key, const char *nm) const
 {
-    int pos = ER_POS;
     int original_hash = hs;
+    
+    if (strcmp(arr[hs].name, nm) == 0)
+        return hs;
     
     if (arr[hs].name == nullptr)
         return ER_POS;
     
-    return pos;
+    return ER_POS;
 }
 
 void closedHash:: dictionary:: del(const char *name)
@@ -101,16 +103,9 @@ void closedHash:: dictionary:: del(const char *name)
     
     if (arr[hash].name == nullptr) //строка пустая
         return;
-    
-    if (strcmp(arr[hash].name, name) == 0) //проверяем текущую строку
-    {
-        arr[hash].name[0] = '\0';
-        return;
-    }
-    
-    hash = countHash(key, 1); //считаем новый хэш
+
     //поиск строки
-    int pos = searchName(hash, key, 1, name);
+    int pos = searchName(hash, key, name);
     if (pos != ER_POS)
         arr[pos].name[0] = '\0';
 }
@@ -122,13 +117,8 @@ bool closedHash:: dictionary:: member(const char *name) const
     
     if (arr[hash].name == nullptr) //строка пустая
         return false;
-    
-    if (strcmp(arr[hash].name, name) == 0) //проверяем текущую строку
-        return true;
-    
-    hash = countHash(key, 1); //считаем новый хэш
     //поиск строки
-    int pos = searchName(hash, key, 1, name);
+    int pos = searchName(hash, key, name);
     return pos != ER_POS;
 }
 
